@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>HTML5 Image Preview</title>
+
+    <meta name="viewport" content="maximum-scale=1.0,width=device-width,initial-scale=1.0,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <meta name="keywords" content="html5, image, preview, cool, instant, web, development, mobile">
+    <meta name="description" content="Handy script to display image preview without uploading by HTML5.">
+
+    <!-- Facebook meta -->
+    <meta property="og:image" content="http://www.w3.org/html/logo/badge/html5-badge-h-css3-device-graphics-multimedia.png"/>
+    <meta property="og:title" content="HTML5 Image Preview"/>
+    <meta property="og:url" content="http://www.tomasdostal.com/projects/html5_image_preview"/>
+    <meta property="og:site_name" content="Tomas Dostal - Personal Page"/>
+
+    <style>
+        /* === Basic reset === */
+        * {margin:0;padding:0;outline:none;}
+        a>img {border:none;}
+        header,footer,article,section,nav,aside {display:block;}
+
+        /* === Styles === */
+        body {font-size:14px;}
+        section {margin:20px 0px;}
+        article {margin:40px 20px;}
+        h1 {margin-bottom:20px;text-align:center;font-size:2.5em;}
+        h2 {margin-bottom:10px;font-size:1.8em;}
+        h3 {margin-bottom:10px;font-size:1.5em;}
+        header {margin-bottom:40px;}
+        header p {text-align:center;font-size:1.2em;}
+        .content {width:80%;margin:20px auto;}
+        ol {margin-left:40px;}
+        ol li {margin:10px 0px;}
+        .imagePreview{margin-top:10px;}
+        .imagePreview img {margin:10px;}
+        article.styled .imagePreview img {
+            padding:15px;
+            border:2px dashed #ccc;
+            border-radius:10px;
+        }
+    </style>
+
+    <script src="html5.image.preview.js"></script>
+</head>
+<body>
+
+    <div class="content">
+
+        <header>
+            <h1>HTML5 Image Preview</h1>
+            <p>Display images in multiple sizes before uploading. This script does not require third party libraries such as jQuery or Mootools and works on majority of devices including Android and iOS.</p>
+        </header>
+
+        <section class="install">
+            <h2>Installation</h2>
+            <ol>
+                <li><strong>Copy html5.image.preview.min.js</strong> to desired folder</li>
+                <li><strong>Include script</strong> in your HTML document</li>
+                <li>Add onChange event to your input field: <strong>onchange="previewImage(this,[256,128,64],4);"</strong></li>
+            </ol>
+        </section>
+
+        <section class="examples">
+            <h2>Examples</h2>
+            <article>
+                <h3>Single Size</h3>
+                <input type="file" name="imagefile" onchange="previewImage(this,[256],4);" />
+                <div class="imagePreview"></div>
+            </article>
+
+            <article>
+                <h3>Multiple Sizes</h3>
+                <input type="file" name="imagefile" onchange="previewImage(this,[512,256,128,64,32,16,8,4],4);" />
+                <div class="imagePreview"></div>
+            </article>
+
+            <article class="styled">
+                <h3>Styled Image Preview</h3>
+                <input type="file" name="imagefile" onchange="previewImage(this,[256,64,32,16],4);" />
+                <div class="imagePreview"></div>
+            </article>
+        </section>
+
+    </div>
+</body>
+</html>
