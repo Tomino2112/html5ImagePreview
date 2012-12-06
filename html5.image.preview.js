@@ -2,7 +2,7 @@
  * == HTML5 Image Preview ==
  * Created By: Tomas Dostal
  * Version: 1.0 (05-12-2012)
- * Documentation: http://tomasdostal.com/portfolio-view/html5-image-preview-script/
+ * Documentation: http://tomasdostal.com/projects/html5ImagePreview
  *
  * HTML structure:
  *	<div>
@@ -51,8 +51,6 @@ function previewImage(el,widths,limit){
 				format = format[format.length-1].toUpperCase();
 			}
 
-			console.log('format: '+format);
-
 			if (((format=='JPG')||(format=='JPEG')||(format=='PNG')||(format=='GIF')) && e.total<(limit*1024*1024)){
 				for (var size in widths){
 					var image = document.createElement('img');
@@ -66,8 +64,6 @@ function previewImage(el,widths,limit){
 							src = src[0] + ':image/'+format.toLowerCase()+';'+src[1];
 						}
 					}
-
-					console.log('src:'+src.substr(0,30));
 
 					image.src = src;
 
