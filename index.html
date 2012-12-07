@@ -22,17 +22,20 @@
         header,footer,article,section,nav,aside {display:block;}
 
         /* === Styles === */
-        body {font-size:14px;}
+        body {color: #747474;font-family:"Myriad Pro",sans-serif; font-size:14px;}
         section {margin:20px 0px;}
         article {margin:40px 20px;}
-        h1 {margin-bottom:20px;text-align:center;font-size:2.5em;}
-        h2 {margin-bottom:10px;font-size:1.8em;}
-        h3 {margin-bottom:10px;font-size:1.5em;}
-        header {margin-bottom:40px;}
-        header p {text-align:center;font-size:1.2em;}
+        h1 {margin-bottom:20px;color:#bdbdbd;text-align:center;font-size:2.5em;text-shadow:1px 1px 1px rgba(255,255,255,0.2), 2px 2px 5px #000;}
+        h2 {margin-bottom:15px;color:#3e3e3e;font-size:1.4em;}
+        h3 {margin-bottom:10px;color:#4e4e4e;font-size:1.2em;}
+        h1,h2,h3 {font-family:"PT Sans";}
+        header {margin-bottom:40px;padding:20px 0px;border-bottom:1px solid #000;background:#2d2d2d;box-shadow:0px 2px 100px rgba(100,100,100,0.4);}
+        header p {width:60%;margin:0px auto 10px auto;color:#a9a9a9;text-align:center;font-size:1.15em;text-shadow:1px 1px 1px rgba(255,255,255,0.2);}
         .content {width:80%;margin:20px auto;}
         ol {margin-left:40px;}
         ol li {margin:10px 0px;}
+        ol li strong {color:#0095ea;font-weight:normal;font-size:1.1em;}
+        ol li p {font-style:italic;}
         .imagePreview{margin-top:10px;}
         .imagePreview img {margin:10px;}
         article.styled .imagePreview img {
@@ -40,25 +43,29 @@
             border:2px dashed #ccc;
             border-radius:10px;
         }
+        footer {margin:20px 0px;text-align:center;}
+        a{color:#0095ea;text-decoration:none;}
+        a:hover {text-decoration:underline;}
     </style>
 
     <script src="html5.image.preview.min.js"></script>
+
 </head>
 <body>
 
-    <div class="content">
+    <header>
+        <h1>HTML5 Image Preview</h1>
+        <p>Display images in multiple sizes before uploading. This script does not require third party libraries such as jQuery or Mootools and works on majority of devices including Android and iOS.</p>
+    </header>
 
-        <header>
-            <h1>HTML5 Image Preview</h1>
-            <p>Display images in multiple sizes before uploading. This script does not require third party libraries such as jQuery or Mootools and works on majority of devices including Android and iOS.</p>
-        </header>
+    <div class="content">
 
         <section class="install">
             <h2>Installation</h2>
             <ol>
-                <li><strong>Copy html5.image.preview.min.js</strong> to desired folder</li>
-                <li><strong>Include script</strong> in your HTML document</li>
-                <li>Add onChange event to your input field: <strong>onchange="previewImage(this,[256,128,64],4);"</strong></li>
+                <li><a href="https://github.com/Tomino2112/html5ImagePreview/archive/master.zip">Download</a> the package and copy html5.image.preview.min.js to desired folder</li>
+                <li>Include script in your HTML document</li>
+                <li>Add onChange event to your input field: <strong>onchange="previewImage(this,[sizes],limit);"</strong></br><p>* limit is number of Mb</p></li>
             </ol>
         </section>
 
@@ -84,5 +91,7 @@
         </section>
 
     </div>
+
+    <footer>Developed by <a href="http://tomasdostal.com/">Tomas Dostal</a>, page designed by <a href="http://clipandpaper.com/">Martin Chen</a></footer>
 </body>
 </html>
