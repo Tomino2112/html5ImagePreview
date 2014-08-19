@@ -15,7 +15,7 @@ function previewImage(el,widths,limit){
 	var files = el.files;
 	var wrap = el.parentNode;
 	var output = wrap.getElementsByClassName('imagePreview')[0];
-	var allowedTypes = ['JPG','JPEG','GIF','PNG','SVG'];
+	var allowedTypes = ['JPG','JPEG','GIF','PNG','SVG','WEBP'];
 
 	output.innerHTML='Loading...';
 
@@ -31,7 +31,7 @@ function previewImage(el,widths,limit){
 			output.innerHTML='';
 			description.innerHTML='This is not valid Image file';
 			output.appendChild(description);
-			return;
+			return false;
 		}
 	}
 
@@ -53,11 +53,11 @@ function previewImage(el,widths,limit){
         		format = format[format.length-1].split('+');
 				format = format[0].toUpperCase();
 			}
-
+			
 			var description = document.createElement('p');
 			description.innerHTML = '<br />This is a <b>'+format+'</b> image, size of <b>'+(e.total/1024).toFixed(2)+'</b> KB.';
 
-			if (allowedTypes.indexOf(format)>=0  && e.total<(limit*1024*1024)){
+			if (allowedTypes.indexOf(format)>=0 && e.total<(limit*1024*1024)){
 				for (var size in widths){
 					var image = document.createElement('img');
 					var src = e.target.result;
@@ -70,7 +70,7 @@ function previewImage(el,widths,limit){
 							src = src[0] + ':image/'+format.toLowerCase()+';'+src[1];
 						}
 					}*/
-
+										
 					image.src = src;
 
 					image.width = widths[size];
