@@ -15,6 +15,7 @@ function previewImage(el,widths,limit){
 	var files = el.files;
 	var wrap = el.parentNode;
 	var output = wrap.getElementsByClassName('imagePreview')[0];
+	var allowedTypes = ['JPG','JPEG','GIF','PNG','SVG'];
 
 	output.innerHTML='Loading...';
 
@@ -43,27 +44,32 @@ function previewImage(el,widths,limit){
 
 			var format = e.target.result.split(';');
 			format = format[0].split('/');
-			format = format[1].toUpperCase();
+    		format = format[1].split('+');
+			format = format[0].toUpperCase();
 
 			// We will change this for an android
 			if (device.android){
 				format = file.name.split('.');
-				format = format[format.length-1].toUpperCase();
+        		format = format[format.length-1].split('+');
+				format = format[0].toUpperCase();
 			}
 
-			if (((format=='JPG')||(format=='JPEG')||(format=='PNG')||(format=='GIF')) && e.total<(limit*1024*1024)){
+			var description = document.createElement('p');
+			description.innerHTML = '<br />This is a <b>'+format+'</b> image, size of <b>'+(e.total/1024).toFixed(2)+'</b> KB.';
+
+			if (allowedTypes.indexOf(format)>=0  && e.total<(limit*1024*1024)){
 				for (var size in widths){
 					var image = document.createElement('img');
 					var src = e.target.result;
 
 					// very nasty hack for android
 					// This actually injects a small string with format into a temp image.
-					if (device.android){
+					/*if (device.android){
 						src = src.split(':');
 						if (src[1].substr(0,4) == 'base'){
 							src = src[0] + ':image/'+format.toLowerCase()+';'+src[1];
 						}
-					}
+					}*/
 
 					image.src = src;
 
@@ -71,16 +77,11 @@ function previewImage(el,widths,limit){
 					image.title = 'Image preview '+widths[size]+'px';
 					output.appendChild(image);
 				}
-			}
 
-			var description = document.createElement('p');
-			description.innerHTML = '<br />This is a <b>'+format+'</b> image, size of <b>'+(e.total/1024).toFixed(2)+'</b> KB.';
-
-			if ((format!=='JPG')&&(format!=='JPEG')&&(format!=='PNG')&&(format!=='GIF')||(e.total>(limit*1024*1024))){
-				description.innerHTML += '<br /><span style="color:red;">Which is wrong format / size! Accepted formats: JPG, PNG, GIF. Size limit is: '+limit+'MB</span>';
-			} else {
 				description.innerHTML += '<br /><span style="color:green;">Picture seems to be fine for upload.</span>';
-			}
+			} else {
+			    description.innerHTML += '<br /><span style="color:red;">Which is wrong format / size! Accepted formats: '+allowedTypes.join(', ')+'. Size limit is: '+limit+'MB</span>';
+			}						
 
 			output.appendChild(description);
 		};
